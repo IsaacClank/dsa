@@ -1,3 +1,5 @@
+// --------------------------------------------------------------------------
+
 pub fn insertion_sort<T: Ord>(arr: &mut [T]) {
   for i in 1..arr.len() {
     let mut insert_index = i;
@@ -9,6 +11,8 @@ pub fn insertion_sort<T: Ord>(arr: &mut [T]) {
   }
 }
 
+// --------------------------------------------------------------------------
+
 pub fn bubble_sort<T: Ord>(arr: &mut [T]) {
   for i in 0..arr.len() - 1 {
     for j in (i + 1..arr.len()).rev() {
@@ -18,6 +22,8 @@ pub fn bubble_sort<T: Ord>(arr: &mut [T]) {
     }
   }
 }
+
+// --------------------------------------------------------------------------
 
 pub fn merge_sort<T>(parent_arr: &mut [T], low: usize, high: usize)
 where
