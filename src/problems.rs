@@ -282,6 +282,31 @@ pub fn two_sum(nums: &[i32], target: i32) -> Vec<usize> {
   result
 }
 
+// ----------- https://www.hackerrank.com/challenges/crush/problem ----------
+
+pub fn array_manipulation(length: usize, operations: &[[u32; 3]]) -> u32 {
+  let mut max_value = 0;
+  let mut arr = vec![0i32; length];
+
+  for operation in operations {
+    let start = operation[0] as usize - 1;
+    let end = operation[1] as usize;
+    let value = operation[2];
+
+    arr[start] += value as i32;
+    if end < arr.len() {
+      arr[end] -= value as i32;
+    }
+  }
+
+  arr.iter().fold(0, |peak, value| {
+    max_value = std::cmp::max(max_value, peak + value);
+    peak + value
+  });
+
+  max_value as u32
+}
+
 #[cfg(test)]
 mod test {
   use super::*;
@@ -383,6 +408,17 @@ mod test {
 
     let result = two_sum(&nums, target);
     let expected = vec![0, 1];
+
+    assert_eq!(result, expected);
+  }
+
+  #[test]
+  fn array_manipulation_test() {
+    let n = 5;
+    let operations = vec![[1, 2, 100], [2, 5, 100], [3, 4, 100]];
+
+    let result = array_manipulation(n, &operations);
+    let expected = 200;
 
     assert_eq!(result, expected);
   }
